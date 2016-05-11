@@ -1,0 +1,39 @@
+body{
+background: #ffffff url(images/background.jpg) top left repeat;
+}
+
+h1{
+color: #FFFFFF;
+text-align:center;
+font-weight: bold;
+}
+
+h2{
+color: #FFFFFF;
+text-align:center;
+}
+
+.wrapper{
+text-align:center;
+}
+
+button {
+position:relative;
+font-family: cursive, verdana;
+color: white;
+font-size: 18px;
+border-radius: 4px;
+background: none;
+padding: 15px 32px 15px 32px;
+margin:20px 20px 20px 20px;
+text-align:center;
+}
+
+button:hover{
+	font-weight: bold;
+}
+.button1 {background-color: #4CAF50;} /* Green */
+.button2 {background-color: #008CBA;} /* Blue */
+.button3 {background-color: #f44336;} /* Red */
+.button4 {background-color: #e7e7e7; color: black;} /* Gray */
+.button5 {background-color: #555555;} /* Black */
