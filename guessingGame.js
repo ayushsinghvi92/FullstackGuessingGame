@@ -9,11 +9,6 @@ winningNumber = generateWinningNumber();
 //alert(winningNumber);
 
 
-$('#submitButton').on('click', function () {
-	playersGuess = playersGuessSubmission();
-	comparePrevious();	
-})
-
 /* **** Guessing Game Functions **** */
 
 // Generate the Winning Number
@@ -93,15 +88,36 @@ function comparePrevious () {
 	// Create a provide hint button that provides additional clues to the "Player"
 
 function provideHint(){
-	// add code here
+	var hintArray = [];
+	hintArray.push(winningNumber);
+	for (var i = 0; i< 4; i++){
+		hintArray.push(generateWinningNumber());
+	}
+	hintArray.sort();
+	return hintArray.toString();
 }
 
 // Allow the "Player" to Play Again
 
-function playAgain(){
-	// add code here
-}
+function playAgain() {
+	winningNumber = generateWinningNumber();
+	previousGuesses = [];
+	$('#prevGuess').text("");
+	$('#response').text("");
+	$('#numberGuesses').text("");
+	$('#hintText').text("");
 
+}
 
 /* **** Event Listeners/Handlers ****  */
 
+$('#submitButton').on('click', function () {
+	playersGuess = playersGuessSubmission();
+	comparePrevious();	
+});
+
+$('#hint').on('click', function () {
+	$('#hintText').text("The winning number is one of these: " + provideHint());
+});
+
+$('#replay').on('click', playAgain);
