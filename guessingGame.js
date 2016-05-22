@@ -3,17 +3,16 @@
 
 var playersGuess,
     winningNumber;
-
-
-
+var previousGuesses = [];
 
 winningNumber = generateWinningNumber();
 //alert(winningNumber);
-$('.button2').on('click', function () {
-	playersGuess = playersGuessSubmission();	
-})
 
-//alert('playerGuessSubmission returned ' + playersGuess);
+
+$('#submitButton').on('click', function () {
+	playersGUess = playersGuessSubmission();
+	comparePrevious();	
+})
 
 /* **** Guessing Game Functions **** */
 
@@ -40,10 +39,38 @@ function lowerOrHigher(){
 // Check if the Player's Guess is the winning number 
 
 function checkGuess(){
-	// add code here
+	if (playersGuess == winningNumber) {
+		$('#response').text('you guessed it right');
+	}
+	else {
+		$('#response').text('try again');
+		$('#numberGuesses').text('Your number of guesses is: ' + previousGuesses.length+1);
+	
+	}
+
 }
 
-// Create a provide hint button that provides additional clues to the "Player"
+function comparePrevious () {
+	if(previousGuesses){
+		var repeat = 0;
+		for (var i = 0; i<=previousGuesses.length; i++){
+ 			if (playersGuess == previousGuesses[i]){
+ 				$('#prevGuess').text("you've already tried this number, please try again");
+ 				repeat++;
+ 				break
+			}
+ 		}
+
+ 		if (!repeat) {
+ 			previousGuesses.push(playersGuess);
+ 			checkGuess();
+ 		}
+ 	}
+ 	else 
+ 		previousGuesses.push(playersGuess);
+ 		checkGuess();	
+}
+	// Create a provide hint button that provides additional clues to the "Player"
 
 function provideHint(){
 	// add code here
