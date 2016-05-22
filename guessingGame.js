@@ -10,7 +10,7 @@ winningNumber = generateWinningNumber();
 
 
 $('#submitButton').on('click', function () {
-	playersGUess = playersGuessSubmission();
+	playersGuess = playersGuessSubmission();
 	comparePrevious();	
 })
 
@@ -44,7 +44,7 @@ function checkGuess(){
 	}
 	else {
 		$('#response').text('try again');
-		$('#numberGuesses').text('Your number of guesses is: ' + previousGuesses.length+1);
+		$('#numberGuesses').text('Your number of guesses is: ' + (previousGuesses.length));
 	
 	}
 
@@ -63,6 +63,7 @@ function comparePrevious () {
 
  		if (!repeat) {
  			previousGuesses.push(playersGuess);
+ 			$('#prevGuess').text("");
  			checkGuess();
  		}
  	}
