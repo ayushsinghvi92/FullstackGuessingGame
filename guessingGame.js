@@ -32,8 +32,27 @@ function playersGuessSubmission(){
 }
 // Determine if the next guess should be a lower or higher number
 
+function bracket () {
+	var difference = Math.abs(playersGuess - winningNumber);
+	
+	if (difference<5)
+		return "within 5 units.";
+	else if (difference<10)
+		return "within 10 units.";
+	else if (difference<20)
+		return "within 20 units.";
+	else
+		return "more than 20 units away";	
+}
+
 function lowerOrHigher(){
-	// add code here
+	var difference = playersGuess - winningNumber;
+	
+	if (difference>0){
+		return "Your guess is too high and " + bracket();
+	}
+	else
+		return "Your guess is too low and " + bracket();
 }
 
 // Check if the Player's Guess is the winning number 
@@ -43,7 +62,7 @@ function checkGuess(){
 		$('#response').text('you guessed it right');
 	}
 	else {
-		$('#response').text('try again');
+		$('#response').text(lowerOrHigher());
 		$('#numberGuesses').text('Your number of guesses is: ' + (previousGuesses.length));
 	
 	}
