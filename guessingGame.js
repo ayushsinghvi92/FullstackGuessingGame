@@ -50,10 +50,22 @@ function lowerOrHigher(){
 		return "Your guess is too low and " + bracket();
 }
 
-// Check if the Player's Guess is the winning number 
 
+
+function youWon() {
+	$('.feedback').css({
+		background: "green",
+		font:"bold",
+		textAlign: "center",
+		fontSize: "24px",
+		fontColor: "blue"
+	});
+};
+
+// Check if the Player's Guess is the winning number 
 function checkGuess(){
 	if (playersGuess == winningNumber) {
+		youWon();
 		$('#response').text('you guessed it right');
 	}
 	else {
