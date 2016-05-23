@@ -5,6 +5,11 @@
 	<body>
 		<h1>Guessing Game</h1>
 		<h2>Ayush Singhvi</h2>
+		<div class = "feedback">
+		<h3 id="response"></h3>
+		<h4 id="numberGuesses"></h4>
+		<h4 id="prevGuess"></h4>
+		</div>
 		<div class="wrapper">
 			
 			<button class="button1" id="hint">Hint!</button>
@@ -16,17 +21,13 @@
 			
 			<button class="button4">Button 4</button>
 		</div>
-		<div="form">
+		<form>
 			<label for="number">Guess A Number</label>
 			<input type="text" id ="number" value='1'>
 			<label>Click Submit</label>
 			<input class="button2" id="submitButton" type="submit" value="Submit Guess">
-		</div>
-		<div class = "feedback">
-		<h3 id="response"></h3>
-		<h4 id="numberGuesses"></h4>
-		<h4 id="prevGuess"></h4>
-		</div>
+		</form>
+		
 	</body>
 	<script src='jquery.js'></script>
 	<script src='guessingGame.js'></script>

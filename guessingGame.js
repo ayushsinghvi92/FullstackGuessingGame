@@ -58,7 +58,7 @@ function youWon() {
 		font:"bold",
 		textAlign: "center",
 		fontSize: "24px",
-		fontColor: "blue"
+		color: "blue"
 	});
 };
 
@@ -118,12 +118,11 @@ function playAgain() {
 	$('#response').text("");
 	$('#numberGuesses').text("");
 	$('#hintText').text("");
-
 }
 
 /* **** Event Listeners/Handlers ****  */
 
-$('#submitButton').on('click', function () {
+$('#submitButton').on('click keypress', function () {
 	playersGuess = playersGuessSubmission();
 	comparePrevious();	
 });
@@ -131,5 +130,10 @@ $('#submitButton').on('click', function () {
 $('#hint').on('click', function () {
 	$('#hintText').text("The winning number is one of these: " + provideHint());
 });
+
+$('form').submit(function (e) {
+	e.preventDefault();
+});
+
 
 $('#replay').on('click', playAgain);
