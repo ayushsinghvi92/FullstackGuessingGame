@@ -4,10 +4,9 @@
 var playersGuess,
     winningNumber;
 var previousGuesses = [];
+var maxGuesses = 5;
 
 winningNumber = generateWinningNumber();
-//alert(winningNumber);
-
 
 /* **** Guessing Game Functions **** */
 
@@ -50,7 +49,16 @@ function lowerOrHigher(){
 		return "Your guess is too low and " + bracket();
 }
 
-
+function youLost() {
+	$('.feedback').css({
+		background: "red",
+		font:"bold",
+		textAlign: "center",
+		fontSize: "24px",
+		color: "blue"
+	});
+	$('#response').text('You exceeded the number of guesses :(');
+};
 
 function youWon() {
 	$('.feedback').css({
@@ -60,24 +68,13 @@ function youWon() {
 		fontSize: "24px",
 		color: "blue"
 	});
+	$('#response').text('you guessed it right');
 };
 
-// Check if the Player's Guess is the winning number 
-function checkGuess(){
-	if (playersGuess == winningNumber) {
-		youWon();
-		$('#response').text('you guessed it right');
-	}
-	else {
-		$('#response').text(lowerOrHigher());
-		$('#numberGuesses').text('Your number of guesses is: ' + (previousGuesses.length));
-	
-	}
-
-}
 
 function comparePrevious () {
-	if(previousGuesses){
+	if (previousGuesses.length < maxGuesses-1){
+		if(previousGuesses){
 		var repeat = 0;
 		for (var i = 0; i<=previousGuesses.length; i++){
  			if (playersGuess == previousGuesses[i]){
@@ -92,11 +89,31 @@ function comparePrevious () {
  			$('#prevGuess').text("");
  			checkGuess();
  		}
- 	}
- 	else 
+	 	}
+	 	else 
  		previousGuesses.push(playersGuess);
  		checkGuess();	
-}
+ 	}
+ 	else {
+ 		youLost();
+ 		$('#numberGuesses').text("");
+ 		$('#guessesLeft').text("");
+ 	}
+}	
+
+// Check if the Player's Guess is the winning number 
+function checkGuess(){
+	if (playersGuess == winningNumber) {
+		youWon();
+	}
+	else {
+		var guessesLeft = maxGuesses - previousGuesses.length;
+		$('#response').text(lowerOrHigher());
+		$('#numberGuesses').text('Your number of guesses is: ' + (previousGuesses.length));
+		$('#guessesLeft').text('You have ' + guessesLeft +' guesses left.');
+	}
+
+}	
 	// Create a provide hint button that provides additional clues to the "Player"
 
 function provideHint(){
@@ -134,6 +151,5 @@ $('#hint').on('click', function () {
 $('form').submit(function (e) {
 	e.preventDefault();
 });
-
 
 $('#replay').on('click', playAgain);

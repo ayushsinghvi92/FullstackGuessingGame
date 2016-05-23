@@ -99,3 +99,7 @@ input[type="submit"]:hover {
 	font-weight: bold;
 	color: #008CBA;
 	}
+.feedback {
+	text-align: center;
+	background: yellow;
+}
